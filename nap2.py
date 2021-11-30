@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (
 	QLineEdit, QPushButton, QCheckBox, QGraphicsView)
 
 ##########################################################################################
-#                           https://realpython.com/python-pyqt-layout/
+#                   https://realpython.com/python-pyqt-layout/
 ##########################################################################################
 class NapMainWindow(QWidget):
 	def __init__(self):		# constructor

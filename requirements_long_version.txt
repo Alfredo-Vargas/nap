@@ -1,0 +1,24 @@
+
+
+
+pip install PyQt5
+pip install --pre scapy[complete]
+pip install jupyter-notebook
+
+pip freeze -l
+git init
+git status
+git add .
+git commit -m "Add new features"
+git push origin master
+git fetch
+git pull
+
+
+python -m venv venv
+.\venv\Scripts\activate
+pip install notebook
+pip install --pre scapy[complete]
+ipython kernel install --user --name=scapy_venv
+
+jupyter kernelspec list

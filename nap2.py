@@ -1,11 +1,13 @@
 import sys
+import NapMethods
+from PyQt5 import QtSvg
 from PyQt5.QtWidgets import (
-	QApplication, QLabel, QWidget,
+	QApplication, QGraphicsItem, QLabel, QWidget,
 	QHBoxLayout, QVBoxLayout, 
-	QLineEdit, QFileDialog, QPushButton, QCheckBox, QGraphicsView)
+	QLineEdit, QFileDialog, QPushButton, QCheckBox, QGraphicsScene, QGraphicsView)
 
 ##########################################################################################
-#                   https://realpython.com/python-pyqt-layout/
+#                   https://realpython.com/python-pyqt-layout/                           #
 ##########################################################################################
 class NapMainWindow(QWidget):
 	def __init__(self):		# constructor
@@ -15,24 +17,42 @@ class NapMainWindow(QWidget):
 		outerLayout = QVBoxLayout()
 		## Create a form layout for the file path field, load pcap button and capture live button
 		topLayout = QHBoxLayout()
-		topLayout.addWidget(QLineEdit(""), 2)
-		btnLoadPcapFile = QPushButton('Load PCAP File2', self)
+
+		self.pathToFile = QLineEdit('', self)	# you want to modify this property that is why becomes a public attribute
+		topLayout.addWidget(self.pathToFile, 2)
+
+		btnLoadPcapFile = QPushButton('Load PCAP File', self)
+		btnLoadPcapFile.clicked.connect(self.browse_files)
 		topLayout.addWidget(btnLoadPcapFile, 1)
-		self.btnLoadPcapFile.clicked.connect(self.browse_files)
+
 		topLayout.addWidget(QPushButton("Capture-Live"), 1)
+
 		## Create the body layout  (graphviz and options will be placed there)
 		bodyLayout = QHBoxLayout()
+
 		### Graphics layout
 		graphicsLayout = QVBoxLayout()
+
 		graphicsLayout.addWidget(QCheckBox("Show Traffic Size in Bytes: "))
-		graphicsLayout.addWidget(QGraphicsView())
+
+		self.graphicOutput = QGraphicsView()	# public attribute because we need to change the conversation images
+		self.scene = QGraphicsScene()
+		#graphicView = QGraphicsView(self.scene, self)
+		graphicsLayout.addWidget(self.graphicOutput)
+
 		### Legend layout
 		legendLayout = QVBoxLayout()
 		legendLayout.addWidget(QLabel("Legend"))
+
 		### Options layout
 		optionsLayout = QVBoxLayout()
-		optionsLayout.addWidget(QPushButton("IP\nConversation"))
+
+		btnShowIPConversation = QPushButton("IP\nConversation", self)
+		btnShowIPConversation.clicked.connect(self.show_ip_conversation)
+		optionsLayout.addWidget(btnShowIPConversation)
+
 		optionsLayout.addWidget(QPushButton("Ethernet\nConversation"))
+
 		optionsLayout.addWidget(QCheckBox("dot"))
 		optionsLayout.addWidget(QCheckBox("twopi"))
 		optionsLayout.addWidget(QCheckBox("neato"))
@@ -50,22 +70,27 @@ class NapMainWindow(QWidget):
 
 		self.setLayout(outerLayout)
 	
+		# Here we define the actions/methods/functions:
 
-		# Here we define the actions:
+	def browse_files(self):
+		response = QFileDialog.getOpenFileName(self, 'Open File', '.', 'PCAP files (*.pcap)')
+		self.pathToFile.setText(response[0])
+		NapMethods.generate_conversations(response[0])
+	
+	# def createGraphicView(self):
+	# 	self.graphicOutput.scene = QGraphicsScene()
+	# 	graphicView = QGraphicsView(self.graphicOutput.scene, self)
 
-		def browse_files(self):
-			return "path"
+	##########################################################################################
+	#  https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtSvg/QGraphicsSvgItem.html       #
+	##########################################################################################
+	def show_ip_conversation(self, path ="./conversations/ip_conversation_twopi.gv.svg"):
+		ipv4Conversation = QtSvg.QGraphicsSvgItem("./conversations/ip_conversation_twopi.gv.svg")
+		self.graphicOutput.showNormal(ipv4Conversation)
+		# ipConversation = QtSvg.QSvgRenderer("./conversations/ip_conversation_twopi.gv.svg")
+		# graphicView = QGraphicsView(self.graphicOutput.scene, self)
+		# graphicView.setGeometry(0,0, 600, 500)
 
-		#self.btnLoadPcapFile = QPushButton('Load PCAP File', self)
-		#self.btnLoadPcapFile.resize(200, 64)
-		#self.btnLoadPcapFile.move(1200, 50)
-
-        # self.pathToFile.setGeometry(QtCore.QRect(10, 10, 451, 21))
-        # self.pathToFile.setText("")
-        # self.pathToFile.setObjectName("pathToFile")
-        # self.btnLoadPcapFile = QtWidgets.QPushButton(self.centralwidget)
-        # self.btnLoadPcapFile.setGeometry(QtCore.QRect(470, 10, 121, 21))
-        # self.btnLoadPcapFile.setObjectName("btnLoadPcapFile")
 
 def runNap():
 	app = QApplication(sys.argv)

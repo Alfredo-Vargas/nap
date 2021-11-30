@@ -103,10 +103,10 @@ def generate_conversations(pcap_file):
 	dot_ip2.format = 'svg'
 	dot_ip3.format = 'svg'
 	dot_ip4.format = 'svg'
-	dot_ip1.render('test-output/ip_conversation_dot.gv')
-	dot_ip2.render('test-output/ip_conversation_twopi.gv')
-	dot_ip3.render('test-output/ip_conversation_neato.gv')
-	dot_ip4.render('test-output/ip_conversation_circo.gv')
+	dot_ip1.render('conversations/ip_conversation_dot.gv')
+	dot_ip2.render('conversations/ip_conversation_twopi.gv')
+	dot_ip3.render('conversations/ip_conversation_neato.gv')
+	dot_ip4.render('conversations/ip_conversation_circo.gv')
 	# Building Ethernet Conversation Graph
 	dot_ether1 = graphviz.Digraph(comment='Ethernet Conversations dot engine')
 	dot_ether2 = graphviz.Digraph(comment='Ethernet Conversations twopi engine')
@@ -141,9 +141,10 @@ def generate_conversations(pcap_file):
 	dot_ether2.format = 'svg'
 	dot_ether3.format = 'svg'
 	dot_ether4.format = 'svg'
-	dot_ether1.render('test-output/ethernet_conversation_dot.gv')
-	dot_ether2.render('test-output/ethernet_conversation_twopi.gv')
-	dot_ether3.render('test-output/ethernet_conversation_neato.gv')
-	dot_ether4.render('test-output/ethernet_conversation_circo.gv')
+	dot_ether1.render('conversations/ethernet_conversation_dot.gv')
+	dot_ether2.render('conversations/ethernet_conversation_twopi.gv')
+	dot_ether3.render('conversations/ethernet_conversation_neato.gv')
+	dot_ether4.render('conversations/ethernet_conversation_circo.gv')
 
-generate_conversations("./pcap/network-traffic.pcap")
+# Uncomment to Debug
+# generate_conversations("./pcap/network-traffic.pcap")

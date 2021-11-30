@@ -1,0 +1,11 @@
+// Ethernet Conversations neato engine
+digraph {
+	graph [nodesep=1 ranksep=3]
+	"00.16.3e.5e.6c.00" [label=MAC1 color=darkblue fontcolor=darkblue]
+	"33.33.00.00.00.02" [label=MAC2 color=darkblue fontcolor=darkblue]
+	"fe.ff.ff.ff.ff.ff" [label=MAC3 color=darkblue fontcolor=darkblue]
+	"fe.ff.ff.ff.ff.ff" -> "00.16.3e.5e.6c.00" [label=126 color=darkblue fontcolor=red labeldistance=0 penwidth=8.0]
+	"00.16.3e.5e.6c.00" -> "fe.ff.ff.ff.ff.ff" [label=126 color=darkblue fontcolor=red labeldistance=0 penwidth=8.0]
+	"fe.ff.ff.ff.ff.ff" -> "33.33.00.00.00.02" [label=70 color=darkblue fontcolor=red labeldistance=0 penwidth=4.888888888888889]
+	"00.16.3e.5e.6c.00" -> "33.33.00.00.00.02" [label=70 color=darkblue fontcolor=red labeldistance=0 penwidth=4.888888888888889]
+}

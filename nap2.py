@@ -1,8 +1,8 @@
 import sys
 from PyQt5.QtWidgets import (
 	QApplication, QLabel, QWidget,
-	QHBoxLayout, QVBoxLayout, QFormLayout,
-	QLineEdit, QPushButton, QCheckBox, QGraphicsView)
+	QHBoxLayout, QVBoxLayout, 
+	QLineEdit, QFileDialog, QPushButton, QCheckBox, QGraphicsView)
 
 ##########################################################################################
 #                   https://realpython.com/python-pyqt-layout/
@@ -16,7 +16,9 @@ class NapMainWindow(QWidget):
 		## Create a form layout for the file path field, load pcap button and capture live button
 		topLayout = QHBoxLayout()
 		topLayout.addWidget(QLineEdit(""), 2)
-		topLayout.addWidget(QPushButton("Load PCAP File"), 1)
+		btnLoadPcapFile = QPushButton('Load PCAP File2', self)
+		topLayout.addWidget(btnLoadPcapFile, 1)
+		self.btnLoadPcapFile.clicked.connect(self.browse_files)
 		topLayout.addWidget(QPushButton("Capture-Live"), 1)
 		## Create the body layout  (graphviz and options will be placed there)
 		bodyLayout = QHBoxLayout()
@@ -48,6 +50,12 @@ class NapMainWindow(QWidget):
 
 		self.setLayout(outerLayout)
 	
+
+		# Here we define the actions:
+
+		def browse_files(self):
+			return "path"
+
 		#self.btnLoadPcapFile = QPushButton('Load PCAP File', self)
 		#self.btnLoadPcapFile.resize(200, 64)
 		#self.btnLoadPcapFile.move(1200, 50)

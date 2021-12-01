@@ -58,7 +58,8 @@ def generate_conversations(pcap_file):
 	mac_label_dict = dict(zip(mac_labels, mac_values))
 
 	##########################################################################################	
-	# We create the Direct Graphic for the IP conversation and Ethernet conversation
+	#    We create the Direct Graphic for the IP conversation and Ethernet conversation      #
+	#                              https://graphviz.org/                                     #
 	##########################################################################################	
 	# Start Linear Mapping to define edge thickness
 	conversation_ip_size = list(map(int, siz_ips))
@@ -88,7 +89,13 @@ def generate_conversations(pcap_file):
 	dot_ip1.graph_attr['nodesep'] = '0.8'
 	dot_ip2.graph_attr['nodesep'] = '0.8'
 	dot_ip3.graph_attr['nodesep'] = '0.8'
-	dot_ip4.graph_attr['nodesep'] = '0.8'
+	dot_ip4.graph_attr['nodespe'] = '0.8'
+	# min width of 8 inches (768 px) and max height of 6 inches (576 px)
+	dot_ip1.graph_attr['size'] = '8!'
+	dot_ip2.graph_attr['size'] = '8!'
+	dot_ip3.graph_attr['size'] = '8!'
+	dot_ip4.graph_attr['size'] = '8!'
+
 	for key, value in ips_label_dict.items():
 		dot_ip1.node(value, key, color="darkblue", fontcolor="darkblue")
 		dot_ip2.node(value, key, color="darkblue", fontcolor="darkblue")
@@ -124,6 +131,12 @@ def generate_conversations(pcap_file):
 	dot_ether2.graph_attr['nodesep'] = '1'
 	dot_ether3.graph_attr['nodesep'] = '1'
 	dot_ether4.graph_attr['nodesep'] = '1'
+	# min width of 8 inches and max height of 6 inches
+	dot_ether1.graph_attr['size'] = '8!'
+	dot_ether2.graph_attr['size'] = '8!'
+	dot_ether3.graph_attr['size'] = '8!'
+	dot_ether4.graph_attr['size'] = '8!'
+
 	for key, value in mac_label_dict.items():
 		value = value.replace(':','.')
 		dot_ether1.node(value, key, color="darkblue", fontcolor="darkblue")
@@ -147,4 +160,4 @@ def generate_conversations(pcap_file):
 	dot_ether4.render('conversations/ethernet_conversation_circo.gv')
 
 # Uncomment to Debug
-# generate_conversations("./pcap/network-traffic.pcap")
+generate_conversations("./pcap/network-traffic.pcap")

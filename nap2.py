@@ -6,21 +6,23 @@
 ##########################################################################################
 import sys
 import NapMethods
-from PyQt5.QtSvg import QGraphicsSvgItem 
+from PyQt5.QtSvg import QGraphicsSvgItem
 from PyQt5.QtWidgets import (
     QApplication, QLabel, QRadioButton, QWidget,
-    QHBoxLayout, QVBoxLayout, 
+    QHBoxLayout, QVBoxLayout,
     QLineEdit, QFileDialog, QPushButton, QCheckBox, QGraphicsScene, QGraphicsView)
-    
+
 class NapMainWindow(QWidget):
+
+
     def __init__(self):		# constructor
         super().__init__()	# shoud inherit all from the class NapMainWindow
         self.setWindowTitle("NAP: Network Analyzer with Python")
         napMode = "off"
         self.napMode = napMode # possible values, ip, mac, ...)
-        # Create an outer layout
+        #  Create an outer layout
         outerLayout = QVBoxLayout()
-        ## Create a form layout for the file path field, load pcap button and capture live button
+        #  Create a form layout for the file path field, load pcap button and capture live button
         topLayout = QHBoxLayout()
 
         self.pathToFile = QLineEdit('', self)	# you want to modify this property that is why becomes a public attribute
@@ -99,7 +101,6 @@ class NapMainWindow(QWidget):
     
     def show_conversation(self, mode = "off"):
         self.napMode = mode # we update the mode of the just pressed button
-        print(self.napMode)
         if (mode == "ip"):
             twopi_figure = "./conversations/ip_conversation_twopi.gv.svg"
             dot_figure = "./conversations/ip_conversation_dot.gv.svg"

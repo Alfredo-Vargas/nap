@@ -11,7 +11,8 @@ def generate_conversations(pcap_file):
         if (scapy.IP in item):
             packets.append([item['IP'].src + ',' + item['IP'].dst, len(item)])
         else:
-            frames.append([item['Ether'].src + ',' + item['Ether'].dst, len(item)])
+            if (scapy.Ether in item):
+                frames.append([item['Ether'].src + ',' + item['Ether'].dst, len(item)])
     packets = numpy.array(packets)
     frames = numpy.array(frames)
     conversation_packets = list(set(packets[:,0]))
@@ -160,4 +161,4 @@ def generate_conversations(pcap_file):
     dot_ether4.render('conversations/ethernet_conversation_circo.gv')
 
 # Uncomment to Debug
-generate_conversations("./pcap/network-traffic.pcap")
+generate_conversations("./pcap/capture.pcap")

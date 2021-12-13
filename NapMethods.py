@@ -161,4 +161,4 @@ def generate_conversations(pcap_file):
     dot_ether4.render('conversations/ethernet_conversation_circo.gv')
 
 # Uncomment to Debug
-generate_conversations("./pcap/capture.pcap")
+generate_conversations("./pcap/network-traffic.pcap")

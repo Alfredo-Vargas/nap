@@ -11,10 +11,10 @@
 2. Installation of libraries and modules:
     1. pip install --pre scapy[complete] 
     2. pip install jupyter notebook
-    3. pip install jupyter notebook
-    4. pip install PyQt5
-    5. pip install flake8
-    6. sudo apt-get update && sudo apt-get install graphviz
+    3. pip install PyQt5
+    4. pip install flake8
+    5. pip install graphviz (installation for python)
+    5. install graphviz (installation for your OS - commands depends on your distro)
 
 3. Run nap.py
 

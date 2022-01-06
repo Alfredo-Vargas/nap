@@ -3,7 +3,7 @@ import graphviz
 import numpy
 
 
-def generate_conversations(pcap_file):
+def generate_ip_conversations(pcap_file):
     # We read the pcap file
     all_traffic = scapy.rdpcap(pcap_file)
     packets, frames = [], []					# to store layer3 and layer2 traffic

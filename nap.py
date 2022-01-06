@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import (
     QHBoxLayout, QVBoxLayout,
     QLineEdit, QFileDialog, QPushButton, QGraphicsScene, QGraphicsView)
 
+    # TEST1
 
 class NapMainWindow(QWidget):
 
@@ -98,7 +99,7 @@ class NapMainWindow(QWidget):
 
     def generate_conversations(self):
         pcap_file = self.pathToFile.text()
-        NapMethods.generate_conversations(pcap_file)
+    NapMethods.generate_conversations(pcap_file)
 
     def show_conversation(self, mode="off"):
         self.napMode = mode  # we update the mode of the just pressed button

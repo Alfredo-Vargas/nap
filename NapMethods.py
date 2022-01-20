@@ -56,7 +56,7 @@ def generate_conversations(pcap_file, layer):
     engines = ["dot", "twopi", "neato", "circo"]
 
     for engine in engines:
-        dot_graph = graphviz.Digraph(comment=layer+' Conversations using ' + engine )
+        dot_graph = graphviz.Digraph(comment=layer + ' Conversations using ' + engine)
         dot_graph.engine = engine
         dot_graph.graph_attr['ranksep'] = '3'
         dot_graph.graph_attr['nodesep'] = '0.8'
@@ -79,6 +79,6 @@ def generate_conversations(pcap_file, layer):
         dot_graph.format = 'svg'
         dot_graph.render('conversations/' + layer + '_' + engine + '_conv.gv')
 
+
 #  Uncomment to Debug
 generate_conversations("./pcap/capture.pcap", "Ether")
-

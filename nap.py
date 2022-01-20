@@ -1,5 +1,3 @@
-# TODO PORT MIRRORING FOR USE IN SWITCHES AND ROUTERS FOR LIVE - CAPTURE FOR INSTANCE
-# TODO Migrate to browser for display of the figures and filtering of options
 ##########################################################################################
 #                   https://realpython.com/python-pyqt-layout/                           #
 #  https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtSvg/QGraphicsSvgItem.html       #

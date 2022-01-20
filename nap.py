@@ -12,7 +12,6 @@ from PyQt5.QtWidgets import (
     QHBoxLayout, QVBoxLayout,
     QLineEdit, QFileDialog, QPushButton, QGraphicsScene, QGraphicsView)
 
-    # TEST1
 
 class NapMainWindow(QWidget):
 
@@ -99,20 +98,21 @@ class NapMainWindow(QWidget):
 
     def generate_conversations(self):
         pcap_file = self.pathToFile.text()
-    NapMethods.generate_conversations(pcap_file)
+        NapMethods.generate_conversations(pcap_file, 'IP')
+        NapMethods.generate_conversations(pcap_file, 'Ether')
 
     def show_conversation(self, mode="off"):
         self.napMode = mode  # we update the mode of the just pressed button
         if (mode == "ip"):
-            twopi_figure = "./conversations/ip_conversation_twopi.gv.svg"
-            dot_figure = "./conversations/ip_conversation_dot.gv.svg"
-            neato_figure = "./conversations/ip_conversation_neato.gv.svg"
-            circo_figure = "./conversations/ip_conversation_circo.gv.svg"
+            twopi_figure = "./conversations/IP_twopi_conv.gv.svg"
+            dot_figure = "./conversations/IP_dot_conv.gv.svg"
+            neato_figure = "./conversations/IP_neato_conv.gv.svg"
+            circo_figure = "./conversations/IP_circo_conv.gv.svg"
         elif (mode == "ether"):
-            twopi_figure = "./conversations/ethernet_conversation_twopi.gv.svg"
-            dot_figure = "./conversations/ethernet_conversation_dot.gv.svg"
-            neato_figure = "./conversations/ethernet_conversation_neato.gv.svg"
-            circo_figure = "./conversations/ethernet_conversation_circo.gv.svg"
+            twopi_figure = "./conversations/Ether_twopi_conv.gv.svg"
+            dot_figure = "./conversations/Ether_dot_conv.gv.svg"
+            neato_figure = "./conversations/Ether_neato_conv.gv.svg"
+            circo_figure = "./conversations/Ether_circo_conv.gv.svg"
         if (self.napMode != "off"):  # IS NOT DETECTING WHETHER OR NOT YOU LOADED THE PCAP FILE
             # 0.x the percentage (x0% of the QGraphicsView, 768 rendered width pixels of the svg images)
             scale_factor = 0.7 * self.view.width() / 768

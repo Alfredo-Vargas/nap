@@ -1,4 +1,4 @@
 [flake8]
 ignore = D203, E501
 exclude = .git,venv
-max-complexity = 10
+max-complexity = 14

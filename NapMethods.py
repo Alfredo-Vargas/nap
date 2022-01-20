@@ -81,4 +81,4 @@ def generate_conversations(pcap_file, layer):
 
 
 #  Uncomment to Debug
-generate_conversations("./pcap/capture.pcap", "Ether")
+# generate_conversations("./pcap/capture.pcap", "Ether")
